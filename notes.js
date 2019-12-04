@@ -1,10 +1,6 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = () => {
-    return "Your notes..."
-}
-
 const readNote = title => {
     const notes = loadNotes()
     // if match is found, index item is returned
@@ -75,7 +71,6 @@ const loadNotes = () => {
 }
 
 module.exports = {
-    getNotes,
     addNote,
     removeNote,
     listNotes,
