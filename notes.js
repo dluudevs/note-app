@@ -5,7 +5,13 @@ const getNotes = () => {
     return "Your notes..."
 }
 
-const removeNote = ({title}) => {
+const listNotes = () => {
+    const notes = loadNotes()
+    console.log(chalk.inverse('Your Notes: '))
+    notes.forEach(note => console.log(chalk.cyan(note.title)))
+}
+
+const removeNote = title => {
     const notes = loadNotes()
     const filtered = notes.filter(note => note.title !== title)
 
@@ -18,13 +24,14 @@ const removeNote = ({title}) => {
 
 }
 
-const addNote = ({title, body}) => {
+const addNote = (title, body) => {
     // this will not override existing notes, because loadNotes returns an array and the new note is added to the array
     // the array is updated with the new note before overwriting the file (similar to React state)
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(n => n.title === title)
+    // returns element if found, otherwise undefined is returned
+    const duplicateNote = notes.find(note => note.title === title)
 
-    if(!duplicateNotes.length){
+    if (!duplicateNote){
         notes.push({
             title,
             body    
@@ -60,5 +67,6 @@ const loadNotes = () => {
 module.exports = {
     getNotes,
     addNote,
-    removeNote
+    removeNote,
+    listNotes
 }

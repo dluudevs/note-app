@@ -35,8 +35,8 @@ yargs.command({
         }
     },
     // yargs will call the handler function with yargs.argv argument. it doesnt not matter what we name the parameter
-    handler: (argv) => {
-        notes.addNote(argv)
+    handler(argv){
+        notes.addNote(argv.title, argv.body)
     }
 })
 
@@ -51,8 +51,8 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: (argv) => {
-        notes.removeNote(argv)
+    handler(argv){
+        notes.removeNote(argv.title)
     }
 })
 
@@ -60,8 +60,8 @@ yargs.command({
 yargs.command({
     command: 'list',
     description: 'lists notes',
-    handler: () => {
-        console.log('Listing notes')
+    handler(){
+        notes.listNotes()
     }
 })
 
@@ -69,7 +69,7 @@ yargs.command({
 yargs.command({
     command: 'read',
     description: 'reads notes',
-    handler: () => {
+    handler(){
         console.log('Reading notes')
     }
 })
