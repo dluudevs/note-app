@@ -5,6 +5,19 @@ const getNotes = () => {
     return "Your notes..."
 }
 
+const readNote = title => {
+    const notes = loadNotes()
+    // if match is found, index item is returned
+    const note = notes.find(note => note.title === title)
+
+    if (note){
+        console.log(`${chalk.yellow('Title:')} ${note.title}`) 
+        console.log(`${chalk.yellow('Description:')} ${note.body}`)
+    } else {
+        console.log(chalk.red('Error: note not found'))
+    }
+}
+
 const listNotes = () => {
     const notes = loadNotes()
     console.log(chalk.inverse('Your Notes: '))
@@ -21,7 +34,6 @@ const removeNote = title => {
     } else {
         console.log(chalk.red.inverse('No note found!'))
     }
-
 }
 
 const addNote = (title, body) => {
@@ -38,11 +50,9 @@ const addNote = (title, body) => {
         })
         saveNotes(notes)
         console.log(chalk.green.inverse('New note added'))
-
     } else {
         console.log(chalk.red.inverse('Note title taken'))
     }
-
 }
 
 const saveNotes = (notes) => {
@@ -68,5 +78,6 @@ module.exports = {
     getNotes,
     addNote,
     removeNote,
-    listNotes
+    listNotes,
+    readNote
 }
