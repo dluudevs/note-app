@@ -1,3 +1,5 @@
+// contains all the handler functions for yargs command
+
 const fs = require('fs')
 const chalk = require('chalk')
 
@@ -39,6 +41,9 @@ const addNote = (title, body) => {
     // returns element if found, otherwise undefined is returned
     const duplicateNote = notes.find(note => note.title === title)
 
+    // debugger
+    //node --inspect-brk app.js <insert command here> 
+
     if (!duplicateNote){
         notes.push({
             title,
@@ -54,7 +59,7 @@ const addNote = (title, body) => {
 const saveNotes = (notes) => {
     // can stringfy because JSON is object or array in string
     const dataJSON = JSON.stringify(notes)
-    fs.writeFileSync('notes.json', dataJSON)
+    fs.writeFileSync('notes.json', dataJsON)
 }
 
 const loadNotes = () => {

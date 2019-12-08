@@ -3,6 +3,7 @@
 
 //npm module
 const chalk = require('chalk') 
+// yargs essentially helps with building command line tools
 const yargs = require('yargs')
 
 //created file, note the relative file path
